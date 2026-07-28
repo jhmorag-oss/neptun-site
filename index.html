@@ -480,7 +480,7 @@
       <div class="login-field">
         <label for="reg-user">Correo institucional</label>
         <input id="reg-user" type="email" placeholder="nombre.apellido@unal.edu.co" autocomplete="username" required/>
-        <div class="login-hint">Debe terminar en @unal.edu.co</div>
+        <div class="login-hint">Puedes usar tu correo institucional o cualquier correo válido</div>
       </div>
       <div class="login-field">
         <label for="reg-pass">Contraseña</label>
@@ -1150,7 +1150,7 @@ function saveUsers(users){
   localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 function isUnalEmail(email){
-  return /^[^\s@]+@unal\.edu\.co$/i.test(email.trim());
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/i.test(email.trim());
 }
 function showAuthForm(which){
   loginForm.classList.toggle("active", which==="login");
@@ -1188,7 +1188,7 @@ registerForm.addEventListener("submit", (e)=>{
     return;
   }
   if(!isUnalEmail(correo)){
-    registerError.textContent = "Debes registrarte con tu correo institucional, terminado en @unal.edu.co";
+    registerError.textContent = "Ingresa un correo válido.";
     registerError.style.display = "block";
     return;
   }
